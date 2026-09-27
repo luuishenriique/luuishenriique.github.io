@@ -1,68 +1,85 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meu Portfólio</title>
   
-  <!-- CDNs Oficiais Estáveis Estilizados -->
-  <link href="https://cloudflare.com" rel="stylesheet" integrity="sha512-wnea99cKBTitkVc4cWhnYWp6cn+kg87b92VfiHNAVlkFM3eQfOPTSvZcXBADmw65S7oLN701M6DxvKw9X66kwg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link href="https://jsdelivr.net" rel="stylesheet" type="text/css" />
+  <!-- Tailwind Play CDN (Carrega tudo de forma 100% garantida sem quebrar) -->
+  <script src="https://tailwindcss.com"></script>
   
-  <style>
-    /* Força o tema escuro mesmo se o CDN demorar para aplicar o atributo data-theme */
-    body { background-color: #1d232a; color: #a6adbb; font-family: sans-serif; }
-  </style>
+  <script>
+    // Configura as cores do tema Dark diretamente no Tailwind para evitar falha de carregamento
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bgPrincipal: '#111827',
+            bgCards: '#1f2937',
+            primaria: '#a855f7'
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body class="bg-base-200 text-base-content min-h-screen">
+<body class="bg-bgPrincipal text-gray-300 min-h-screen font-sans">
 
   <!-- Navbar -->
-  <div class="navbar bg-base-100 shadow-lg px-4">
-    <div class="flex-1">
-      <a class="btn btn-ghost normal-case text-xl font-bold text-primary">MeuPortfólio</a>
+  <nav class="bg-gray-900 shadow-xl border-b border-gray-800 sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="text-xl font-bold text-primaria tracking-wide">MeuPortfólio</a>
+      <div class="space-x-6 font-medium">
+        <a href="#projetos" class="hover:text-primaria transition">Projetos</a>
+        <a href="#contato" class="hover:text-primaria transition">Contato</a>
+      </div>
     </div>
-    <div class="flex-none">
-      <ul class="menu menu-horizontal px-1 font-medium">
-        <li><a href="#projetos">Projetos</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </div>
-  </div>
+  </nav>
 
   <!-- Hero Section -->
-  <div class="hero min-h-[50vh] bg-base-100 py-12">
-    <div class="hero-content text-center">
-      <div class="max-w-md">
-        <h1 class="text-4xl font-extrabold text-white">Olá, eu sou um <span class="text-primary">Desenvolvedor</span></h1>
-        <p class="py-6 text-gray-400">Bem-vindo ao meu portfólio. Aqui você encontra os principais projetos e tecnologias com as quais trabalho no meu dia a dia.</p>
-        <a href="#projetos" class="btn btn-primary">Ver Projetos</a>
-      </div>
+  <header class="container mx-auto px-6 py-24 text-center">
+    <div class="max-w-2xl mx-auto">
+      <h1 class="text-5xl font-extrabold text-white mb-6">
+        Olá, eu sou um <span class="text-primaria">Desenvolvedor</span>
+      </h1>
+      <p class="text-lg text-gray-400 mb-8 leading-relaxed">
+        Bem-vindo ao meu portfólio. Aqui você encontra os principais projetos e tecnologias com as quais trabalho no meu dia a dia.
+      </p>
+      <a href="#projetos" class="bg-primaria text-white font-bold px-8 py-3 rounded-lg hover:bg-purple-700 transition inline-block shadow-lg shadow-purple-500/20">
+        Ver Projetos
+      </a>
     </div>
-  </div>
+  </header>
 
   <!-- Projetos Section -->
-  <div id="projetos" class="container mx-auto px-4 py-16">
-    <h2 class="text-3xl font-bold text-center mb-12 text-white">Meus Projetos</h2>
-    <div id="repo-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="flex justify-center col-span-full py-8">
-        <progress class="progress progress-primary w-56"></progress>
+  <section id="projetos" class="container mx-auto px-6 py-16 border-t border-gray-800">
+    <h2 class="text-3xl font-bold text-center text-white mb-12">Meus Projetos</h2>
+    <div id="repo-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Loader de Carregamento -->
+      <div class="col-span-full flex flex-col items-center py-12">
+        <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primaria mb-4"></div>
+        <p class="text-gray-500">Carregando repositórios do GitHub...</p>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- Contato Section -->
-  <div id="contato" class="bg-base-100 py-16 border-t border-gray-800">
-    <div class="max-w-md mx-auto text-center px-4">
-      <h2 class="text-2xl font-bold mb-4 text-white">Vamos conversar?</h2>
-      <p class="text-gray-400 mb-6">Sinta-se à vontade para entrar em contato para oportunidades ou colaborações.</p>
+  <footer id="contato" class="bg-gray-950 py-16 border-t border-gray-900">
+    <div class="max-w-md mx-auto text-center px-6">
+      <h2 class="text-2xl font-bold text-white mb-4">Vamos conversar?</h2>
+      <p class="text-gray-400 mb-8">Sinta-se à vontade para entrar em contato para oportunidades ou colaborações.</p>
       <div class="flex justify-center gap-4">
-        <a href="https://github.com" id="github-link" target="_blank" class="btn btn-outline btn-sm">GitHub</a>
-        <a href="mailto:seu-email@email.com" class="btn btn-primary btn-sm">E-mail</a>
+        <a href="https://github.com" id="github-link" target="_blank" class="border border-gray-700 hover:border-white text-white font-medium px-6 py-2 rounded-md transition text-sm">
+          GitHub
+        </a>
+        <a href="mailto:seu-email@email.com" class="bg-primaria text-white font-medium px-6 py-2 rounded-md hover:bg-purple-700 transition text-sm">
+          E-mail
+        </a>
       </div>
     </div>
-  </div>
+  </footer>
 
-  <!-- JavaScript Dinâmico -->
+  <!-- Script de Repositórios Dinâmicos -->
   <script>
     const GITHUB_USERNAME = 'luuishenriique'; 
 
@@ -75,7 +92,7 @@
         const repos = await response.json();
         container.innerHTML = ''; 
 
-        if(repos.length === 0) {
+        if (repos.length === 0) {
           container.innerHTML = `<p class="text-center col-span-full text-gray-500">Nenhum repositório público encontrado.</p>`;
           return;
         }
@@ -84,25 +101,27 @@
           if (repo.fork) return;
 
           const card = document.createElement('div');
-          card.className = 'card bg-neutral shadow-xl border border-gray-800 hover:border-primary transition-all duration-300';
+          card.className = 'bg-bgCards rounded-xl p-6 border border-gray-800 hover:border-primaria transition duration-300 flex flex-col justify-between shadow-xl';
           card.innerHTML = `
-            <div class="card-body p-6">
-              <h2 class="card-title text-lg font-bold text-white truncate">${repo.name}</h2>
-              <p class="text-sm text-gray-400 min-h-[40px] line-clamp-2">${repo.description || 'Sem descrição disponível.'}</p>
-              <div class="flex flex-wrap gap-2 my-2">
-                \${repo.language ? `<span class="badge badge-primary badge-sm font-semibold">\${repo.language}</span>` : ''}
-                <span class="badge badge-ghost badge-sm text-gray-400">⭐ \${repo.stargazers_count}</span>
+            <div>
+              <h3 class="text-xl font-bold text-white mb-2 truncate">${repo.name}</h3>
+              <p class="text-sm text-gray-400 mb-4 h-12 overflow-hidden text-ellipsis line-clamp-2">${repo.description || 'Sem descrição disponível.'}</p>
+            </div>
+            <div>
+              <div class="flex items-center gap-4 text-xs font-semibold mb-4 text-gray-400">
+                ${repo.language ? `<span class="bg-purple-900/50 text-primaria px-2.5 py-1 rounded-full">\${repo.language}</span>` : ''}
+                <span class="flex items-center gap-1">⭐ ${repo.stargazers_count}</span>
               </div>
-              <div class="card-actions justify-end mt-4">
-                <a href="\${repo.html_url}" target="_blank" class="btn btn-primary btn-sm btn-outline">Acessar Código</a>
-              </div>
+              <a href="${repo.html_url}" target="_blank" class="text-xs text-primaria font-bold tracking-wider uppercase hover:underline flex items-center gap-1">
+                Acessar Código &rarr;
+              </a>
             </div>
           `;
           container.appendChild(card);
         });
       } catch (error) {
         console.error(error);
-        container.innerHTML = `<p class="text-center col-span-full text-error font-medium">Não foi possível carregar os projetos no momento.</p>`;
+        container.innerHTML = `<p class="text-center col-span-full text-red-400 font-medium">Não foi possível carregar os projetos automaticamente do GitHub.</p>`;
       }
     }
 
