@@ -4,14 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meu Portfólio</title>
-  <!-- Tailwind CSS & daisyUI CDN (Versões Atualizadas) -->
-  <link href="https://jsdelivr.net" rel="stylesheet">
+  
+  <!-- CDNs Oficiais Estáveis Estilizados -->
+  <link href="https://cloudflare.com" rel="stylesheet" integrity="sha512-wnea99cKBTitkVc4cWhnYWp6cn+kg87b92VfiHNAVlkFM3eQfOPTSvZcXBADmw65S7oLN701M6DxvKw9X66kwg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://jsdelivr.net" rel="stylesheet" type="text/css" />
+  
+  <style>
+    /* Força o tema escuro mesmo se o CDN demorar para aplicar o atributo data-theme */
+    body { background-color: #1d232a; color: #a6adbb; font-family: sans-serif; }
+  </style>
 </head>
 <body class="bg-base-200 text-base-content min-h-screen">
 
   <!-- Navbar -->
-  <div class="navbar bg-base-100 shadow-lg px-4 font-sans">
+  <div class="navbar bg-base-100 shadow-lg px-4">
     <div class="flex-1">
       <a class="btn btn-ghost normal-case text-xl font-bold text-primary">MeuPortfólio</a>
     </div>
@@ -27,8 +33,8 @@
   <div class="hero min-h-[50vh] bg-base-100 py-12">
     <div class="hero-content text-center">
       <div class="max-w-md">
-        <h1 class="text-4xl font-extrabold">Olá, eu sou um <span class="text-primary">Desenvolvedor</span></h1>
-        <p class="py-6 text-base-content/70">Bem-vindo ao meu portfólio. Aqui você encontra os principais projetos e tecnologias com as quais trabalho no meu dia a dia.</p>
+        <h1 class="text-4xl font-extrabold text-white">Olá, eu sou um <span class="text-primary">Desenvolvedor</span></h1>
+        <p class="py-6 text-gray-400">Bem-vindo ao meu portfólio. Aqui você encontra os principais projetos e tecnologias com as quais trabalho no meu dia a dia.</p>
         <a href="#projetos" class="btn btn-primary">Ver Projetos</a>
       </div>
     </div>
@@ -36,7 +42,7 @@
 
   <!-- Projetos Section -->
   <div id="projetos" class="container mx-auto px-4 py-16">
-    <h2 class="text-3xl font-bold text-center mb-12">Meus Projetos</h2>
+    <h2 class="text-3xl font-bold text-center mb-12 text-white">Meus Projetos</h2>
     <div id="repo-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div class="flex justify-center col-span-full py-8">
         <progress class="progress progress-primary w-56"></progress>
@@ -45,10 +51,10 @@
   </div>
 
   <!-- Contato Section -->
-  <div id="contato" class="bg-base-100 py-16 border-t border-base-300">
+  <div id="contato" class="bg-base-100 py-16 border-t border-gray-800">
     <div class="max-w-md mx-auto text-center px-4">
-      <h2 class="text-2xl font-bold mb-4">Vamos conversar?</h2>
-      <p class="text-base-content/70 mb-6">Sinta-se à vontade para entrar em contato para oportunidades ou colaborações.</p>
+      <h2 class="text-2xl font-bold mb-4 text-white">Vamos conversar?</h2>
+      <p class="text-gray-400 mb-6">Sinta-se à vontade para entrar em contato para oportunidades ou colaborações.</p>
       <div class="flex justify-center gap-4">
         <a href="https://github.com" id="github-link" target="_blank" class="btn btn-outline btn-sm">GitHub</a>
         <a href="mailto:seu-email@email.com" class="btn btn-primary btn-sm">E-mail</a>
@@ -56,11 +62,9 @@
     </div>
   </div>
 
-  <!-- JavaScript Corrigido -->
+  <!-- JavaScript Dinâmico -->
   <script>
     const GITHUB_USERNAME = 'luuishenriique'; 
-
-    document.getElementById('github-link').href = `https://github.com{GITHUB_USERNAME}`;
 
     async function fetchGitHubRepos() {
       const container = document.getElementById('repo-container');
@@ -72,7 +76,7 @@
         container.innerHTML = ''; 
 
         if(repos.length === 0) {
-          container.innerHTML = `<p class="text-center col-span-full text-base-content/50">Nenhum repositório público encontrado.</p>`;
+          container.innerHTML = `<p class="text-center col-span-full text-gray-500">Nenhum repositório público encontrado.</p>`;
           return;
         }
 
@@ -80,17 +84,17 @@
           if (repo.fork) return;
 
           const card = document.createElement('div');
-          card.className = 'card bg-base-100 shadow-xl border border-base-300 hover:border-primary transition-all duration-300';
+          card.className = 'card bg-neutral shadow-xl border border-gray-800 hover:border-primary transition-all duration-300';
           card.innerHTML = `
-            <div class="card-body">
-              <h2 class="card-title text-lg font-bold truncate">${repo.name}</h2>
-              <p class="text-sm text-base-content/70 min-h-[40px] line-clamp-2">${repo.description || 'Sem descrição disponível.'}</p>
+            <div class="card-body p-6">
+              <h2 class="card-title text-lg font-bold text-white truncate">${repo.name}</h2>
+              <p class="text-sm text-gray-400 min-h-[40px] line-clamp-2">${repo.description || 'Sem descrição disponível.'}</p>
               <div class="flex flex-wrap gap-2 my-2">
-                ${repo.language ? `<span class="badge badge-primary badge-sm font-semibold">\${repo.language}</span>` : ''}
-                <span class="badge badge-ghost badge-sm">⭐ ${repo.stargazers_count}</span>
+                \${repo.language ? `<span class="badge badge-primary badge-sm font-semibold">\${repo.language}</span>` : ''}
+                <span class="badge badge-ghost badge-sm text-gray-400">⭐ \${repo.stargazers_count}</span>
               </div>
               <div class="card-actions justify-end mt-4">
-                <a href="${repo.html_url}" target="_blank" class="btn btn-primary btn-sm btn-outline">Acessar Código</a>
+                <a href="\${repo.html_url}" target="_blank" class="btn btn-primary btn-sm btn-outline">Acessar Código</a>
               </div>
             </div>
           `;
