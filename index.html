@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meu Portfólio</title>
-  <!-- Tailwind CSS & daisyUI CDN -->
+  <!-- Tailwind CSS & daisyUI CDN (Versões Atualizadas) -->
   <link href="https://jsdelivr.net" rel="stylesheet">
   <link href="https://jsdelivr.net" rel="stylesheet" type="text/css" />
 </head>
@@ -48,7 +48,7 @@
   <div id="contato" class="bg-base-100 py-16 border-t border-base-300">
     <div class="max-w-md mx-auto text-center px-4">
       <h2 class="text-2xl font-bold mb-4">Vamos conversar?</h2>
-      <p class="text-base-content/70 mb-6">Sinta-se à voltar para entrar em contato para oportunidades ou colaborações.</p>
+      <p class="text-base-content/70 mb-6">Sinta-se à vontade para entrar em contato para oportunidades ou colaborações.</p>
       <div class="flex justify-center gap-4">
         <a href="https://github.com" id="github-link" target="_blank" class="btn btn-outline btn-sm">GitHub</a>
         <a href="mailto:seu-email@email.com" class="btn btn-primary btn-sm">E-mail</a>
@@ -56,7 +56,7 @@
     </div>
   </div>
 
-  <!-- JavaScript para consumir a API do GitHub -->
+  <!-- JavaScript Corrigido -->
   <script>
     const GITHUB_USERNAME = 'luuishenriique'; 
 
@@ -86,11 +86,11 @@
               <h2 class="card-title text-lg font-bold truncate">${repo.name}</h2>
               <p class="text-sm text-base-content/70 min-h-[40px] line-clamp-2">${repo.description || 'Sem descrição disponível.'}</p>
               <div class="flex flex-wrap gap-2 my-2">
-                \${repo.language ? `<span class="badge badge-primary badge-sm font-semibold">\${repo.language}</span>` : ''}
-                <span class="badge badge-ghost badge-sm">⭐ \${repo.stargazers_count}</span>
+                ${repo.language ? `<span class="badge badge-primary badge-sm font-semibold">\${repo.language}</span>` : ''}
+                <span class="badge badge-ghost badge-sm">⭐ ${repo.stargazers_count}</span>
               </div>
               <div class="card-actions justify-end mt-4">
-                <a href="\${repo.html_url}" target="_blank" class="btn btn-primary btn-sm btn-outline">Acessar Código</a>
+                <a href="${repo.html_url}" target="_blank" class="btn btn-primary btn-sm btn-outline">Acessar Código</a>
               </div>
             </div>
           `;
